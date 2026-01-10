@@ -2,7 +2,7 @@ function HomePage() {
   const cards = JSON.parse(localStorage.getItem("Diaries"));
   console.log(cards);
   return (
-    <main className="min-h-screen">
+    <main className="flex h-screen overflow-hidden">
       <div
         className="hero min-h-screen flex flex-wrap gap-6 p-10 items-start justify-center"
         style={{
@@ -25,7 +25,7 @@ function HomePage() {
             </div>
           ))
         ) : (
-          <h2 className="text-white text-2xl bg-black/50 p-4 rounded">No diary entries found.</h2>
+          <h2 className="text-white text-8xl bg-black/50 p-4 rounded ">No diary entries found.</h2>
         )}
       </div>
     </main>
