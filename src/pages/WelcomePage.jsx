@@ -3,26 +3,32 @@ import { useEffect, useState } from "react";
 export default function HomePage() {
   const [isClicked, setIsClicked] = useState(false);
   const [entry, entryList] = useState(() => {
-    const existingEntry = JSON.parse(localStorage.getItem("Diaries")) || [];
-    return existingEntry;
+    return JSON.parse(localStorage.getItem("Diaries")) || [];
   });
   useEffect(() => {
     localStorage.setItem("Diaries", JSON.stringify(entry));
   }, [entry]);
   const saveEntry = (e) => {
     e.preventDefault();
-    const newEntry = {
-      title: e.target.elements.title.value,
-      date: e.target.elements.date.value,
-      url: e.target.elements.image.value,
-      content: e.target.elements.content.value,
-    };
-    entryList([newEntry, ...entry]);
+    const dataInput = e.target.elements.date.value;
+    const dateExists = entry.some((entry) => entry.date === dataInput);
+    if (!dateExists) {
+      const newEntry = {
+        title: e.target.elements.title.value,
+        date: e.target.elements.date.value,
+        url: e.target.elements.image.value,
+        content: e.target.elements.content.value,
+      };
+      entryList([newEntry, ...entry]);
+    } else {
+      alert("You cannot have an entry for the same day!!!");
+    }
+
     setIsClicked(false);
   };
   return (
     <>
-      <main className="flex min-h-screen overflow-hidden">
+      <main className="flex h-screen overflow-hidden">
         <div
           className="hero bg-cover bg-center"
           style={{
