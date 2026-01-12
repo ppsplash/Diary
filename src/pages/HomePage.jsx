@@ -9,9 +9,9 @@ function HomePage() {
   return (
     <main className="flex h-screen overflow-hidden">
       <div
-        className="hero h-screen flex flex-wrap gap-6 p-5 items-start justify-center"
+        className="hero h-screen flex flex-wrap gap-6 p-5 items-start justify-center backdrop-blur-sm"
         style={{
-          backgroundImage: "url(https://images.unsplash.com/photo-1635840563538-3ae09be0ec34?w=1920&auto=format&fit=crop&q=80&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGRpYXJ5JTIwaW1hZ2VzJTIwYXMlMjBhJTIwYmFja2dyb3VuZCUyMGZvciUyMHdlYnBhZ2V8ZW58MHx8MHx8fDA%3D)",
+          backgroundImage: "url(https://plus.unsplash.com/premium_photo-1709492256417-816ffcb88cc5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
         }}
       >
         {cards.length > 0 ? (
@@ -32,7 +32,7 @@ function HomePage() {
             </div>
           ))
         ) : (
-          <h2 className="text-white text-8xl bg-black/50 p-4 rounded ">No diary entries found.</h2>
+          <h2 className="text-white text-8xl bg-black/50 p-4 rounded">No diary entries found.</h2>
         )}
       </div>
       {selectedCard && (
