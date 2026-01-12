@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigation } from "react-router";
 
 export default function HomePage() {
   const [isClicked, setIsClicked] = useState(false);
@@ -8,6 +9,8 @@ export default function HomePage() {
   useEffect(() => {
     localStorage.setItem("Diaries", JSON.stringify(entry));
   }, [entry]);
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "Loading";
   const saveEntry = (e) => {
     e.preventDefault();
     const dataInput = e.target.elements.date.value;
@@ -23,12 +26,11 @@ export default function HomePage() {
     } else {
       alert("You cannot have an entry for the same day!!!");
     }
-
     setIsClicked(false);
   };
   return (
     <>
-      <main className="flex h-screen overflow-hidden">
+      <main className="flex h-screen w-screen overflow-hidden">
         <div
           className="hero bg-cover bg-center"
           style={{
@@ -46,7 +48,7 @@ export default function HomePage() {
               </button>
               {isClicked && (
                 <div className="modal modal-open" role="dialog">
-                  <div className="modal-box">
+                  <div className="modal-box bg-orange-200">
                     <h2 className="text-2xl font-bold font-serif">Sketch your memories here</h2>
                     <form onSubmit={saveEntry} className="flex flex-col gap-4">
                       <label htmlFor="title" className="flex flex-col gap-2 text-xl font-semibold text-left">
@@ -73,6 +75,7 @@ export default function HomePage() {
                           Save Entry
                         </button>
                       </div>
+                      {isSubmitting && <div>Submitting...</div>}
                     </form>
                   </div>
                 </div>
